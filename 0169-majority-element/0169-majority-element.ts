@@ -1,31 +1,32 @@
-const insertionSort = (arr) => {
- for (let i = 1; i < arr.length; i++) {
-        for (let j = 0; j < i; j++) {
-            if (arr[j] > arr[i]) {
-                let temp = arr[j]
-                arr[j] = arr[i]
-                arr[i] = temp
-            }
-        }
-    }
+function quicksort(arr: number[]): number[] {
+  if (arr.length <= 1) {
     return arr;
+  }
+
+  const pivot = arr[Math.floor(arr.length / 2)];
+  const less: number[] = [];
+  const equal: number[] = [];
+  const greater: number[] = [];
+
+  for (const num of arr) {
+    if (num < pivot) {
+      less.push(num);
+    } else if (num === pivot) {
+      equal.push(num);
+    } else {
+      greater.push(num);
+    }
+  }
+
+  return [...quicksort(less), ...equal, ...quicksort(greater)];
 }
 
 function majorityElement(nums: number[]): number {
     let elements: any = {};
     let n: number = Math.floor(nums.length);
-    let sortedArr: number[] = insertionSort(nums);
+    let sortedArr: number[] = quicksort(nums);
     return sortedArr[Math.floor(n/2)];
     
-    // for(let i:number = 0; i< nums.length ; i++) {
-//         let num:number = nums[i];
-        
-//         if(elements[String(num)] !== undefined) {
-//             elements[String(num)]++;
-//             if(elements[String(num)] > n) return elements[String(num)]
-//         } else {
-//             elements[String(num)] = 0;
-//         }
     
 }
     
