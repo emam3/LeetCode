@@ -8,7 +8,7 @@ function fizzBuzz(n: number): string[] {
         } else if((i+1)%3 !==0 && (i+1)%5 === 0) {
             arr[i] = "Buzz";
         } else {
-            arr[i] = `${i+1}`;
+            arr[i] = String(i+1);
         }
     }
     
