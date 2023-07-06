@@ -24,16 +24,16 @@ function maxPoints(points: number[][]): number {
                 m = (y2-y1)/(x2-x1);
                 c = y1 - (m*x1);
             }
-            // let lineName: string = `${m},${c}`;
-            if(`${m},${c}` in lines) {
-                lines[`${m},${c}`].add(`${x1},${y1}`);
-                lines[`${m},${c}`].add(`${x2},${y2}`);
-                maxNumber = Math.max(maxNumber, lines[`${m},${c}`].size);
+            let lineName: string = `${m},${c}`;
+            if(lineName in lines) {
+                lines[lineName].add(`${x1},${y1}`);
+                lines[lineName].add(`${x2},${y2}`);
+                maxNumber = Math.max(maxNumber, lines[lineName].size);
             } else {
-                lines[`${m},${c}`] = new Set()
-                lines[`${m},${c}`].add(`${x1},${y1}`);
-                lines[`${m},${c}`].add(`${x2},${y2}`);
-                maxNumber = Math.max(maxNumber, lines[`${m},${c}`].size);
+                lines[lineName] = new Set()
+                lines[lineName].add(`${x1},${y1}`);
+                lines[lineName].add(`${x2},${y2}`);
+                maxNumber = Math.max(maxNumber, lines[lineName].size);
             }
         }
     }
