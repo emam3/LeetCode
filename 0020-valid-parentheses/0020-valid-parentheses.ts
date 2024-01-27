@@ -1,33 +1,16 @@
 function isValid(s: string): boolean {
-const stack: string[] = [];
-  for (const char of s) {
-    switch (char) {
-      case '(':
-      case '[':
-      case '{':
-        stack.push(char);
-        break;
-      case ')':
-        if (stack.length === 0 || stack[stack.length - 1] !== '(') {
-          return false;
-        }
-        stack.pop();
-        break;
-      case ']':
-        if (stack.length === 0 || stack[stack.length - 1] !== '[') {
-          return false;
-        }
-        stack.pop();
-        break;
-      case '}':
-        if (stack.length === 0 || stack[stack.length - 1] !== '{') {
-          return false;
-        }
-        stack.pop();
-        break;
-    }
-  }
-
-  return stack.length === 0;
+    let stack: string[] = [];
     
+    for(let i: number = 0 ; i < s.length ; i++) {
+        stack.push(s[i]);
+        if((stack[stack.length -1] === ')' && stack[stack.length -2] === '(') ||
+          (stack[stack.length -1] === ']' && stack[stack.length -2] === '[') ||
+          (stack[stack.length -1] === '}' && stack[stack.length -2] === '{')) {
+            stack.pop();
+            stack.pop();
+
+        }  
+    }
+    
+    return stack.length === 0
 };
